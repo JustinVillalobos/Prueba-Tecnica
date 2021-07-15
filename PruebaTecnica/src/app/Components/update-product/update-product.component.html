@@ -1,0 +1,113 @@
+<app-header></app-header>
+<div class="content bg-light  border border-top border-right-0 border-secondary border-bottom-0">
+	<div class="row">
+		<div class="col-sm-4 d-flex align-items-center">
+			<a class="btn" href="/"><span><i class="fa fa-arrow-circle-left"></i></span></a>
+			<h5 class="pt-2"><strong>Productos</strong></h5>
+		</div>
+		<div class="col-sm-8">
+			
+		</div>	
+		<div class="container mt-4 bg-white border border-secondary" >
+			<div class="row">
+				<div class="col-sm-12 p-3">
+
+					<p><strong> Actualizar Producto</strong></p>
+				</div>
+			</div>
+
+			<div class="row mt-2">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+									<label>Nombre</label><label class="text-danger">*</label>
+								</div>
+								<div class="col-sm-12">
+									<input type="text"  class="form-control" [(ngModel)]="product.name" placeholder="Ingrese el nombre de un nuevo producto" minlength="45" (keypress)="validateName($event)"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+									<label>Cantidad</label><label class="text-danger">*</label>
+								</div>
+								<div class="col-sm-12">
+									<input type="number" class="form-control" [(ngModel)]="product.quantity" minlength="1" max="10000" required="required" (keypress)="validateNumberInput($event)"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+									<label>Precio</label><label class="text-danger">*</label>
+								</div>
+								<div class="col-sm-12">
+									<input type="text"  class="form-control" [(ngModel)]="product.price" minlength="1" max="10000" required="required" (keypress)="validateNumberInput($event)"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+									<label>Categoría</label><label class="text-danger">*</label>
+								</div>
+								<div class="col-sm-12">
+									<select [(ngModel)]="product.category" placeholder="--Seleccione una respuesta--" class="form-control">
+										<option *ngFor="let category of categories" >{{category.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col-sm-12">
+					<label>Imágen</label><label class="text-danger">*</label>
+				</div>
+				<div class="col-sm-12">
+					<form [formGroup]="form">
+						<ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif" [multiple]=false>
+							<ngx-dropzone-label>Arrastra el archivo</ngx-dropzone-label>
+							<ngx-dropzone-preview *ngFor="let f of file" [removable]="true" (removed)="onRemove(f)">
+								<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+							</ngx-dropzone-preview>
+						</ngx-dropzone>
+					</form>
+				</div>
+			</div>
+
+			<div class="row mt-2">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+
+								</div>
+								<div class="col-sm-12 pb-2">
+									<button class="btn btn-primary" (click)="updateProduct()">Actualizar</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+	<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "pacman" [fullScreen] = "true"><p style="color: white" > Cargando... </p></ngx-spinner>

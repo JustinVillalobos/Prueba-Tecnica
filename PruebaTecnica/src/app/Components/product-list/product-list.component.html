@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<div class="content bg-light  border border-top border-secondary border-bottom-0">
+	<!--Tittle an search box-->
+	<div class="row">
+		<div class="col-sm-4 d-flex align-items-center">
+			<h5><strong>Productos</strong></h5>
+		</div>
+		<div class="col-sm-8">
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="input-group">
+						<input type="search" [(ngModel)]="filter" class='form-control border border-right-0' placeholder="Buscar Productos"/>
+						<span class="input-group-append ">
+							<div class="input-group-text bg-white border border-left-0 text-secondary">
+								<i class="fa fa-search"></i>
+							</div>
+						</span>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<a class='btn btn-primary' href="/add-product"><span><i class="fa fa-plus"></i></span> Añadir Producto</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- Table-->
+	<div class="container mt-4 bg-white border border-secondary" >
+		<div class="row">
+			<div class="col-sm-12 p-4">
+				<p><strong> Lista de Productos</strong></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 p-4" style="overflow-x:auto;">
+				<table class="table">
+					<thead >
+						<tr >
+							<th class="border-top-0 text-center">Nombre</th>
+							<th class="border-top-0 text-center">Categoría</th>
+							<th class="border-top-0 text-center">Precio</th>
+							<th class="border-top-0 text-center">Cantidad</th>
+							<th class="border-top-0 text-center">Inventario</th>
+							<th class="border-top-0 text-center">Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let product of products | paginate:{itemsPerPage:10,currentPage:p} | filter:filter">
+							<td><img src="{{product.image}}" style="width:85px;height:45px"/><label class="ml-1">{{product.name}}</label></td>
+							<td class="text-center">{{product.category}}</td>
+							<td class="text-center">{{"$"+product.price}}</td>
+							<td class="text-center">{{product.quantity}}</td>
+							<td *ngIf="product.quantity==0; else elseBlock" class=" d-flex justify-content-center">
+								<p class="text-danger"><span><i class="fa fa-circle"></i></span><strong class="ml-1">Agotado</strong></p>
+							</td>
+
+              				<ng-template #elseBlock>
+              					<td  *ngIf="product.quantity<10; else elseStock" class=" d-flex justify-content-center">
+              						<p class="text-warning"><span><i class="fa fa-circle"></i></span><strong class="ml-1">Limitado</strong></p>
+              						
+              					</td>
+              					<ng-template #elseStock>
+              					<td  class=" d-flex justify-content-center">
+              						<p class="text-success"><span><i class="fa fa-circle"></i></span><strong class="ml-1">En Stock</strong></p>
+              					</td>
+              				</ng-template>
+              				</ng-template>
+              				
+							<td>
+								<div class="d-flex justify-content-center">
+									<a class="btn text-secondary"   title="Modificar" href="update-product?idProduct={{product.idProduct}}"><span><i class="fa fa-edit"></i></span></a>
+									<button class="btn text-secondary"  title="Eliminar" (click)="onDeletProduct(product.idProduct)"><span><i class="fa fa-trash-alt"></i></span></button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pagination-controls (pageChange)="p=$event"></pagination-controls>
+			</div>
+		</div>
+	</div>
+	
+</div>
+

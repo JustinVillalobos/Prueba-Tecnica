@@ -1,0 +1,30 @@
+.logout_btn{
+  padding: 5px;
+  background: #19B3D3;
+  text-decoration: none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 40px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.logout_btn:hover{
+  background: #0B87A6;
+}
+
+header{
+  margin-left: 20%;
+    width: 80%;
+}
+@media only screen and (max-width: 900px){
+  header{
+    width: 100%;
+    margin-left: 0px;
+    height: 90px;
+  }
+}
