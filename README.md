@@ -14,3 +14,4 @@
 # Lo anterior es el link inicial del proyecto Angular, debe cargar una vista de una tabla con registros
 # Si dichos registros no carga, comprobar requisitos de usos de este mismo documento
 #Se anexa una carpeta de Screenshots
+#Se anexa Carpeta con Backend Peticiones PHP 8
