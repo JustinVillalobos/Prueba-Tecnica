@@ -4,7 +4,7 @@
 # Angular 11.2.9 o superior
 # Conexión a internet: debido a que el backend esta subido en un hosting online, entonces requiere de dicha conexión a internet
 
-# Guía de instalación
+# Guía de instalación, abrir consola CMD
 # Clonar proyecto: git clone https://github.com/JustinVillalobos/Prueba-Tecnica.git
 # Ejecutar comando: npm install
 # El comando anterior es necesario para descargar todas las dependencias del proyecto
@@ -15,3 +15,4 @@
 # Si dichos registros no carga, comprobar requisitos de usos de este mismo documento
 #Se anexa una carpeta de Screenshots
 #Se anexa Carpeta con Backend Peticiones PHP 8
+
